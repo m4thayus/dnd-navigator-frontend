@@ -1,16 +1,28 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import DMView from './containers/DMView';
 import PlayerView from './containers/PlayerView';
 import './App.css';
 
-class App extends Component {
-    render() {
-        return (
-            <div className="App">
-            <DMView />
-            </div>
-        );
-    }
+function App() {
+    return (
+        <Router>
+          <nav>
+            <ul>
+              <li>
+                <Link to="/dm/">DMView</Link>
+              </li>
+              <li>
+                <Link to="/player/">PlayerView</Link>
+              </li>
+            </ul>
+          </nav>
+  
+          <Route path="/" exact render={() => <PlayerView cards={cards} />} />
+          <Route path="/dm/" render={() => <DMView cards={cards} />} />
+          <Route path="/player/" render={() => <PlayerView cards={cards} />} />
+      </Router>
+  )
 }
 
 
@@ -27,13 +39,4 @@ export default App;
 //         img_url: "https://vignette.wikia.nocookie.net/lotr/images/5/5f/Strider_in_Prancing_Pony_-_FOTR.png/revision/latest?cb=20121003045004"
 //     }
 // ]
-
-// function App() {
-//     return (
-//         <React.Fragment>
-//             <DMView cards={cards} />
-//             <PlayerView cards={cards} />
-//         </React.Fragment>
-//     );
-// }
 

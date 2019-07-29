@@ -5,7 +5,7 @@ class PlayerView extends React.Component {
 
     render() {
         return (
-            this.props.cards.map(card => <Card card={card} />)
+            <div>Inside PlayerView</div>
         )
     }
 }

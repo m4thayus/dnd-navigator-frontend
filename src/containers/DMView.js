@@ -1,5 +1,4 @@
 import React from "react";
-// import PlayerView from "./PlayerView";
 import Card from "../components/Card";
 
 
@@ -26,21 +25,22 @@ class DMView extends React.Component {
        const turn = [...this.state.turn, selected];
        this.setState({ turn });
     }
- };
-
- render() {
-     const {selected} = this.state;
-     if (selected){
+     
+     render() {
+        const {selected} = this.state;
          return (
-             <Card
+           !!selected 
+           ? 
+            <Card
                 card={selected}
                 handleCardClick={this.handleCardClick}
-            />
+            /> 
+           :
+           <div className="ui cards">
+                {this.props.cards.map(card => <Card card={card} />)
+            </div>
          );
      }
-  
-     
- }
-}
+ };
 
 export default DMView;
