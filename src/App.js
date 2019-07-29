@@ -18,9 +18,9 @@ function App() {
             </ul>
           </nav>
   
-          <Route path="/" exact render={() => <PlayerView cards={cards} />} />
-          <Route path="/dm/" render={() => <DMView cards={cards} />} />
-          <Route path="/player/" render={() => <PlayerView cards={cards} />} />
+          <Route path="/" exact render={() => <PlayerView />} />
+          <Route path="/dm/" render={() => <DMView />} />
+          <Route path="/player/" render={() => <PlayerView />} />
       </Router>
   )
 }
