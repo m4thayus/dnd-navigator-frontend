@@ -14,7 +14,8 @@ class DMView extends React.Component {
             .then(response => response.json())
             .then(cards => {
                 this.setState({
-                    cards: cards
+                    cards: cards,
+                    thisTurn: cards[cards.length - 1]
                 })
             })
             .catch(error => {
@@ -31,26 +32,34 @@ class DMView extends React.Component {
                     }
                 ]
                 this.setState({
-                    cards: cards
+                    cards: cards,
+                    thisTurn: cards[cards.length - 1]
                 })
             })
     }
 
-    // handleCardClick = selected => {
-    //     this.setState({ selected});
-    //     const add = !this.state.turns.filter(Card => Card.id === selected.id).length;
+    handleAddToQueue = card => {
+        this.setState({ 
+            nextTurn: card
+        });
+    }
 
-    //     if (add) {
-    //         const turn = [...this.state.turn, selected];
-    //         this.setState({ turn });
-    //     }
-    // }
+    handleConfirm = card => {
+        //do a post fetch
+    }
 
     render() {
         return(
-            <div className="ui cards">
-                {this.state.cards.map(card => <Card card={card} key={card.id}/>)}
-            </div>
+            <React.Fragment>
+                <div className="ui cards">
+                    {this.state.cards.map(card => <Card key={card.id} card={card} type={"list"} handleClick={this.handleAddToQueue}/>)}
+                </div>
+                <div class="ui divider"></div>
+                <div className="ui cards">
+                    <Card key="this-turn" card={this.state.thisTurn} type={"this-turn"} handleClick={null} />
+                    <Card key="next-turn" card={this.state.nextTurn} list={"next-turn"} handleClick={this.state.handleConfirm} />
+                </div>
+            </React.Fragment>
         )
     }
 
