@@ -5,7 +5,9 @@ class PlayerView extends React.Component {
 
     render() {
         return (
-            <div>Inside PlayerView</div>
+            <div className="ui cards">
+                {this.state.cards.map(card => <Card card={card} />)}
+            </div>
         )
     }
 }

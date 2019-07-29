@@ -35,7 +35,7 @@ class DMView extends React.Component {
                 card={selected}
                 handleCardClick={this.handleCardClick}
             /> 
-           :
+            :
             <div className="ui cards">
                 {this.state.cards.map(card => <Card card={card} />)}
             </div>
