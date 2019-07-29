@@ -1,6 +1,6 @@
 import React from "react";
 import Card from "../components/Card";
-
+import { PLAYERS_URL } from "../routes";
 
 class PlayerView extends React.Component {
 
@@ -10,11 +10,15 @@ class PlayerView extends React.Component {
         characters: []
     };
  
-     componentDidMount () {
-        fetch("http://localhost:3000/api/v1/players")
-        .then(response => response.json())
-        .then(cards => this.setState({ cards, loading: false}));
-     }
+    componentDidMount () {
+        fetch(PLAYERS_URL)
+            .then(response => response.json())
+            .then(cards => {
+                this.setState({
+                    cards: cards
+                })
+            });
+    }
 
     render() {
         return (

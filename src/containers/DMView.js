@@ -1,19 +1,39 @@
 import React from "react";
 import Card from "../components/Card";
-
+import { CARDS_URL } from "../routes";
 
 class DMView extends React.Component {
-   state = {
-       cards: [],
-       loading: true,
-       turns: [],
-       selected: null
-   };
+    state = {
+        cards: [],
+        thisTurn: null,
+        nextTurn: null
+    };
 
     componentDidMount () {
-       fetch("http://localhost:3000/api/v1/cards")
-       .then(response => response.json())
-       .then(cards => this.setState({ cards, loading: false}));
+        fetch(CARDS_URL)
+            .then(response => response.json())
+            .then(cards => {
+                this.setState({
+                    cards: cards
+                })
+            })
+            .catch(error => {
+                const cards= [
+                    {
+                        title: "Bree",
+                        content: "Bree was a village, of Men and hobbits, in Middle-earth, located east of the Shire and south of Fornost in Eriador. Bree was an ancient settlement of men in Eriador by the time of..",
+                        img_url: "https://vignette.wikia.nocookie.net/lotr/images/1/1a/Bree.jpg/revision/latest?cb=20060220135923"
+                    },
+                    {
+                        title: "Strider",
+                        content: "Aragorn joined Frodo Baggins, Bilbo's adopted heir, and three of his friends at the Inn of the Prancing Pony in Bree. Though originally the hobbits were suspicious of Strider, they eventually trusted him and prepared to escape Bree and the Ringwraiths.",
+                        img_url: "https://vignette.wikia.nocookie.net/lotr/images/5/5f/Strider_in_Prancing_Pony_-_FOTR.png/revision/latest?cb=20121003045004"
+                    }
+                ]
+                this.setState({
+                    cards: cards
+                })
+            })
     }
 
     // handleCardClick = selected => {
@@ -33,6 +53,7 @@ class DMView extends React.Component {
             </div>
         )
     }
+
  };
 
 export default DMView;
