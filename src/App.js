@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import DMView from './containers/DMView';
 import PlayerView from './containers/PlayerView';
 
@@ -18,10 +19,22 @@ const cards=[
 
 function App() {
     return (
-        <React.Fragment>
-            <DMView cards={cards} />
-            <PlayerView cards={cards} />
-        </React.Fragment>
+        <Router>
+          <nav>
+            <ul>
+              <li>
+                <Link to="/dm/">DMView</Link>
+              </li>
+              <li>
+                <Link to="/player/">PlayerView</Link>
+              </li>
+            </ul>
+          </nav>
+  
+          <Route path="/" exact render={() => <PlayerView cards={cards} />} />
+          <Route path="/dm/" render={() => <DMView cards={cards} />} />
+          <Route path="/player/" render={() => <PlayerView cards={cards} />} />
+      </Router>
     );
 }
 
