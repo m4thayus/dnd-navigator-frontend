@@ -16,30 +16,22 @@ class DMView extends React.Component {
        .then(cards => this.setState({ cards, loading: false}));
     }
 
-    handleCardClick = selected => {
-        this.setState({ selected});
-        const add = !this.state.turns.filter(Card => Card.id === selected.id).length;
+    // handleCardClick = selected => {
+    //     this.setState({ selected});
+    //     const add = !this.state.turns.filter(Card => Card.id === selected.id).length;
 
-        if (add) {
-            const turn = [...this.state.turn, selected];
-            this.setState({ turn });
-        }
-    }
+    //     if (add) {
+    //         const turn = [...this.state.turn, selected];
+    //         this.setState({ turn });
+    //     }
+    // }
 
     render() {
-        const {selected} = this.state;
-         return (
-            !!selected 
-            ? 
-            <Card
-                card={selected}
-                handleCardClick={this.handleCardClick}
-            /> 
-            :
+        return(
             <div className="ui cards">
-                {this.state.cards.map(card => <Card card={card} />)}
+                {this.state.cards.map(card => <Card card={card} key={card.id}/>)}
             </div>
-         );
+        )
     }
  };
 
