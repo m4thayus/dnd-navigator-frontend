@@ -1,12 +1,11 @@
 import React from "react";
+import Card from "../components/Card";
 
 class PlayerView extends React.Component {
 
     render() {
         return (
-            <div>
-                Inside PlayerView
-            </div>
+            this.props.cards.map(card => <Card card={card} />)
         )
     }
 }
