@@ -1,6 +1,6 @@
 import React from "react"
 
-const renderQueueButton = (type, card, handleClick) => {
+const renderQueueButton = (type, card, handleClick, handleClickAlt) => {
     if (type === "this-turn") {
         return (
             <div className="ui bottom attached disabled button" >
@@ -9,16 +9,22 @@ const renderQueueButton = (type, card, handleClick) => {
         )
     } else {
         return (
-            <div className="ui bottom attached green button" onClick={() => handleClick(card)} >
-                <i className="check icon"></i>
+            <div className="ui bottom attached ui buttons" >
+                <button className="ui red button" onClick={() => handleClickAlt()} >
+                    Cancel
+                </button>
+                <div className="or"></div>
+                <button className="ui green button" onClick={() => handleClick(card)} >
+                    <i className="check icon"></i>
                     Confirm Next Turn
+                </button>
             </div>
         )
     }
 }
 
 const DMCard = props => {
-    let { card, handleClick, type } = props;
+    let { card, handleClick, handleClickAlt, type } = props;
 
     return (
         !!card
@@ -43,7 +49,7 @@ const DMCard = props => {
                         Add to Queue
                     </div>
                 : 
-                    renderQueueButton(type, card, handleClick)
+                    renderQueueButton(type, card, handleClick, handleClickAlt)
                 }   
             </div>
         :

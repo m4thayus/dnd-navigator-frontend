@@ -55,6 +55,12 @@ class DMView extends React.Component {
         });
     }
 
+    handleRemoveFromQueue = () => {
+        this.setState({
+            nextTurn: null
+        })
+    }
+
     handleConfirm = card => {
         console.log(card)
         //do a post fetch
@@ -86,7 +92,10 @@ class DMView extends React.Component {
             <React.Fragment>
                 <div className="ui cards centered">
                     <DMCard key="this-turn" card={this.state.thisTurn} type={"this-turn"} />
-                    <DMCard key="next-turn" card={this.state.nextTurn} list={"next-turn"} handleClick={this.handleConfirm} />
+                    <DMCard 
+                        key="next-turn" card={this.state.nextTurn} list={"next-turn"} 
+                        handleClick={this.handleConfirm} handleClickAlt={this.handleRemoveFromQueue}
+                    />
                 </div>
                 <div className="ui divider"></div>
                 <div className="ui cards centered">
