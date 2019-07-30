@@ -1,21 +1,26 @@
 import React from "react";
 import DMCard from "../components/DMCard";
-import { CARDS_URL, TURNS_URL } from "../routes";
+import { CAMPAIGNS_URL, TURNS_URL } from "../routes";
 
 class DMView extends React.Component {
-    state = {
-        cards: [],
-        thisTurn: null,
-        nextTurn: null
-    };
+    constructor(props) {
+        super(props)
+        this.state = {
+            //campaign: props.campaign,
+            cards: [],
+            thisTurn: null,
+            nextTurn: null
+
+        }
+    }
 
     componentDidMount () {
-        fetch(CARDS_URL)
+        fetch(CAMPAIGNS_URL + `/${this.props.campaign.id}`)
             .then(response => response.json())
-            .then(cards => {
+            .then(campaign => {
                 this.setState({
-                    cards: cards,
-                    thisTurn: cards[cards.length - 1]
+                    cards: campaign.cards,
+                    thisTurn: campaign.turns[campaign.turns.length - 1]
                 })
             })
             .catch(error => {

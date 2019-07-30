@@ -1,20 +1,22 @@
 import React from "react";
 import PlayerCard from "../components/PlayerCard";
-import { PLAYERS_URL } from "../routes";
+import { CHARACTERS_URL } from "../routes";
 
 class PlayerView extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            //character: props.character,
+            cards: []
+        }
+    }
 
-    state = {
-        cards: [],
-        characters: []
-    };
- 
     componentDidMount () {
-        fetch(PLAYERS_URL)
+        fetch(CHARACTERS_URL + `/${this.props.character.id}`)
             .then(response => response.json())
-            .then(cards => {
+            .then(character => {
                 this.setState({
-                    cards: cards
+                    cards: character.cards
                 })
             })
             .catch(error => {
@@ -49,7 +51,7 @@ class PlayerView extends React.Component {
 
     render() {
         return (
-            <div className="ui items container centered">
+            <div className="ui segment items container centered">
                 {this.state.cards.map(card => <PlayerCard card={card} key={card.id}/>)}
             </div>
         )
