@@ -24,27 +24,24 @@ const renderQueueButton = (type, card, handleClick, handleClickAlt) => {
 }
 
 const DMCard = props => {
-    const divStyle = {
-        overflowY: "scroll",
-        height: "250px"
-    }
-
     let { card, handleClick, handleClickAlt, type } = props;
 
     return (
         !!card
         ? 
-            <div className="ui card" >
+            <div className="ui raised card">
+                <div className="image">
+                    <img className="ui image" src={process.env.PUBLIC_URL + '/000000.png'} style={{backgroundImage: `url(${card.img_url})`}} alt={card.title} />
+                </div>
                 <div className="content">
-                    <img className="right floated ui image" src={card.img_url} alt={card.title} />
                     <div className="header">
                         {card.title}
                     </div>
                     <div className="meta">
                         {card.type}
                     </div>
-                    <div className="description" style={divStyle}>
-                        {card.content}
+                    <div className="description">
+                        {card.content.substring(0,250)}
                     </div>
                 </div>
                 { type === "list" 
@@ -58,14 +55,15 @@ const DMCard = props => {
                 }   
             </div>
         :
-            <div className="ui card">
+            <div className="ui raised card">
                 <div className="content">
                     <div className="ui fluid placeholder">
-                        <div className="image header">
-                            <div className="line"></div>
-                            <div className="line"></div>
+                        <div className="image">
                         </div>
                         <div className="paragraph">
+                            <div className="line"></div>
+                            <div className="line"></div>
+                            <div className="line"></div>
                             <div className="line"></div>
                             <div className="line"></div>
                             <div className="line"></div>

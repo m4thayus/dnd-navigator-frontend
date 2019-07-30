@@ -100,20 +100,20 @@ class DMView extends React.Component {
             <React.Fragment>
                 <Router >
                 <Route path="/new-card/" render={() => <NewCardContainer campaign={this.props.campaign} addCard={this.addCard} />} />
-                <div className="ui cards two wide column container">
+                <div className="ui container segment centered">
+                <Link className="ui primary fluid button" to="/new-card/">
+                            Add New Card
+                </Link>
+                </div>
+                <div className="ui two cards container">
                     <DMCard key="this-turn" card={this.state.thisTurn} type={"this-turn"} />
                     <DMCard 
                         key="next-turn" card={this.state.nextTurn} list={"next-turn"} 
                         handleClick={this.handleConfirm} handleClickAlt={this.handleRemoveFromQueue}
                     />
                 </div>
-                <div className="ui segment container">
-                    <div className="ui right external rail">
-                    <Link className="ui primary button" to="/new-card/">
-                            Add New Card
-                    </Link>
-                    </div>
-                    <div className="ui cards centered">
+                <div className="ui container">
+                    <div className="ui four cards centered">
                         {this.state.cards.filter(card => card !== this.state.thisTurn)
                             .map(card => <DMCard key={card.id} card={card} type={"list"} handleClick={this.handleAddToQueue}/>)}
                     </div>
