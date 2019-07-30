@@ -51,9 +51,16 @@ class PlayerView extends React.Component {
 
     render() {
         return (
-            <div className="ui segment items container centered">
-                {this.state.cards.map(card => <PlayerCard card={card} key={card.id}/>)}
-            </div>
+            <React.Fragment>
+                <div className="ui segment container centered">
+                    <button className="ui fluid primary button">
+                        Next Turn
+                    </button>
+                </div>
+                <div className="ui segment items container centered">
+                    {this.state.cards.map(card => <PlayerCard card={card} key={card.id}/>)}
+                </div>
+            </React.Fragment>
         )
     }
 }

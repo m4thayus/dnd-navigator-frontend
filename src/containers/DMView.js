@@ -95,17 +95,18 @@ class DMView extends React.Component {
     render() {
         return(
             <React.Fragment>
-                <div className="ui cards centered">
+                <div className="ui cards two wide column container">
                     <DMCard key="this-turn" card={this.state.thisTurn} type={"this-turn"} />
                     <DMCard 
                         key="next-turn" card={this.state.nextTurn} list={"next-turn"} 
                         handleClick={this.handleConfirm} handleClickAlt={this.handleRemoveFromQueue}
                     />
                 </div>
-                <div className="ui divider"></div>
-                <div className="ui cards centered">
-                    {this.state.cards.filter(card => card !== this.state.thisTurn)
-                        .map(card => <DMCard key={card.id} card={card} type={"list"} handleClick={this.handleAddToQueue}/>)}
+                <div className="ui segment container">
+                    <div className="ui cards centered">
+                        {this.state.cards.filter(card => card !== this.state.thisTurn)
+                            .map(card => <DMCard key={card.id} card={card} type={"list"} handleClick={this.handleAddToQueue}/>)}
+                    </div>
                 </div>
             </React.Fragment>
         )
