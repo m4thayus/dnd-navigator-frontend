@@ -6,6 +6,9 @@ function Character(props){
     return (
         <div onClick={() => handleClick(character)}>
             {character.name}
+            <div className="image">
+                <img className="ui rounded image" src={character.img_url} alt={character.title} />
+            </div>
         </div>
     )
 }
