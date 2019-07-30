@@ -20,7 +20,7 @@ class DMView extends React.Component {
             .then(campaign => {
                 this.setState({
                     cards: campaign.cards,
-                    // thisTurn: campaign[campaign.turns.length - 1]
+                    thisTurn: campaign.cards[campaign.cards.length - 1]
                 })
             })
             // .catch(error => {
