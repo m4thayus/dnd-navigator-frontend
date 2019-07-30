@@ -14,6 +14,7 @@ class NewCardContainer extends React.Component {
     }
 
     handleSubmit = event => {
+        event.preventDefault()
         let cardData = {
             title: this.state.title,
             content: this.state.content,
