@@ -1,6 +1,7 @@
 import React from "react";
 import SelectionContainer from "./SelectionContainer";
 import LoginForm from "../components/LoginForm";
+import { DMS_URL, CAMPAIGNS_URL } from "../routes";
 
 class LoginContainer extends React.Component {
     state = {
@@ -12,11 +13,13 @@ class LoginContainer extends React.Component {
 
     handleSubmit = event => {
         event.preventDefault()
-        //fetch request for username
-        let testOptions = this.state.userType === "dm" ? [{id: 0, name: "Test Campaign"}] : [{id: 0, name: "Test Character"}]
-        this.setState({
-            loggedIn: true,
-            options: testOptions
+        fetch(CAMPAIGNS_URL)
+            .then(response => response.json())
+            .then(campaigns => {
+                this.setState({
+                    loggedIn: true,
+                    options: campaigns
+            });
         })
     }
 
