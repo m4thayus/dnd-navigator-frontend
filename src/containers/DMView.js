@@ -9,6 +9,7 @@ class DMView extends React.Component {
             //campaign: props.campaign,
             cards: [],
             turns: [],
+            characters: [],
             thisTurn: null,
             nextTurn: null
 
@@ -21,7 +22,8 @@ class DMView extends React.Component {
             .then(campaign => {
                 this.setState({
                     cards: campaign.cards,
-                    turns: campaign.turns
+                    turns: campaign.turns,
+                    characters: campaign.characters
                 }, () => {
                     fetch(TURNS_URL + `/${this.state.turns[this.state.turns.length - 1].id}`)
                         .then(response => response.json())
@@ -76,10 +78,17 @@ class DMView extends React.Component {
     }
 
     handleConfirm = card => {
-        console.log(card)
-        //do a post fetch
-        let formData = {
-            //turn data
+        let number = parseInt(this.state.thisTurn.number, 10) + 1
+        this.state.characters.forEach(character => {
+            this.postTurn(number, card, character)
+        })
+    }
+
+    postTurn = (number, card, character) => {
+        let turnData = {
+            number: parseInt(number, 10),
+            card_id: parseInt(card.id, 10),
+            character_id: parseInt(character.id, 10)
         };
         
         let configObject = {
@@ -88,12 +97,12 @@ class DMView extends React.Component {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
             },
-            body: JSON.stringify(formData)
+            body: JSON.stringify(turnData)
         };
         
         fetch(TURNS_URL, configObject)
             .then(response => response.json())
-            .then(object => {
+            .then(turn => {
                //do some stuff 
             })
             .catch(error => {
