@@ -12,11 +12,12 @@ function App() {
                     DnD Navigator
                 </div>
                 <Link className="item" to="/">Home</Link>
-                {/* <Link className="item" to="/new/">New Card</Link> */}
+                <Link className="item" to="/login/">Login</Link>
                 {/* <Link className="item" to="/player/">PlayerView</Link> */}
             </nav>
   
             <Route path="/" exact render={() => <LoginContainer />} />
+            <Route path="/login/" render={() => <LoginContainer />} />
             {/* <Route path="/new/" render={() => <NewCardContainer />} /> */}
             {/* <Route path="/player/" render={() => <PlayerView character={""} />} /> */}
       </Router>

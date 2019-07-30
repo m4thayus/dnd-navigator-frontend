@@ -29,7 +29,7 @@ class SelectionContainer extends React.Component {
             ?
                 this.props.user === "dm" ? <DMView campaign={this.state.currentSelection} /> : <PlayerView character={this.state.currentSelection} />
             :
-                <React.Fragment>
+            <div className="ui segment items container centered">
                     {
                         this.props.options.map(option => {
                             return (
@@ -41,7 +41,7 @@ class SelectionContainer extends React.Component {
                             ) 
                         })
                     }
-                </React.Fragment>
+                </div>
 
         )
     }
