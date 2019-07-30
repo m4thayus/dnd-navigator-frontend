@@ -21,11 +21,11 @@ class NewCardContainer extends React.Component {
             img_url: this.state.img_url,
             campaign_id: parseInt(this.props.campaign.id, 10)
         };
-        
+
         let configObject = {
             method: "POST",
             headers: {
-                "Title": "application/json",
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             },
             body: JSON.stringify(cardData)
