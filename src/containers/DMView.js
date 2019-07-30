@@ -105,7 +105,7 @@ class DMView extends React.Component {
                             Add New Card
                 </Link>
                 </div>
-                <div className="ui two cards container">
+                <div className="ui three cards centered container">
                     <DMCard key="this-turn" card={this.state.thisTurn} type={"this-turn"} />
                     <DMCard 
                         key="next-turn" card={this.state.nextTurn} list={"next-turn"} 

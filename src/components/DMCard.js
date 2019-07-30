@@ -56,10 +56,13 @@ const DMCard = props => {
             </div>
         :
             <div className="ui raised card">
+                <div className="image">
+                    <div className="ui placeholder">
+                        <div className="image fluid"></div>
+                    </div>
+                </div>
                 <div className="content">
                     <div className="ui fluid placeholder">
-                        <div className="image">
-                        </div>
                         <div className="paragraph">
                             <div className="line"></div>
                             <div className="line"></div>
