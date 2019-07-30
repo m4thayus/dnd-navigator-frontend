@@ -42,7 +42,7 @@ class LoginContainer extends React.Component {
                         options: dm.campaigns
                 });
             })
-        } else if (this.state.players.some(player => player.username === this.state.username)){
+        } else if (this.state.userType === "player" && this.state.players.some(player => player.username === this.state.username)){
             let user = this.state.players.find(player => player.username === this.state.username)
             fetch(PLAYERS_URL + `/${user.id}`)
                 .then(response => response.json())
