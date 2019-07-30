@@ -8,6 +8,7 @@ class DMView extends React.Component {
         this.state = {
             //campaign: props.campaign,
             cards: [],
+            turns: [],
             thisTurn: null,
             nextTurn: null
 
@@ -20,8 +21,16 @@ class DMView extends React.Component {
             .then(campaign => {
                 this.setState({
                     cards: campaign.cards,
-                    thisTurn: campaign.cards[campaign.cards.length - 1]
-                })
+                    turns: campaign.turns
+                }, () => {
+                    fetch(TURNS_URL + `/${this.state.turns[this.state.turns.length - 1].id}`)
+                        .then(response => response.json())
+                        .then(turn => {
+                            this.setState({
+                                thisTurn: turn.card
+                            })
+                        })
+                    })
             })
             // .catch(error => {
             //     const cards= [
