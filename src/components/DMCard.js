@@ -36,7 +36,7 @@ const DMCard = props => {
         ? 
             <div className="ui card" >
                 <div className="content">
-                    <img className="right floated mini ui image" src={card.img_url} alt={card.title} />
+                    <img className="right floated ui image" src={card.img_url} alt={card.title} />
                     <div className="header">
                         {card.title}
                     </div>
