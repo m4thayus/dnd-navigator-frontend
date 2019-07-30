@@ -9,7 +9,11 @@ function App() {
     return (
         <Router>
             <nav className="ui pointing menu">
-                <Link className="item" to="/">Login</Link>
+                <div className="header item">
+                    <i className="compass icon"></i>
+                    DnD Navigator
+                </div>
+                <Link className="item" to="/">Home</Link>
                 <Link className="item" to="/dm/">DMView</Link>
                 <Link className="item" to="/player/">PlayerView</Link>
             </nav>
