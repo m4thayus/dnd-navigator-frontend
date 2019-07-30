@@ -36,20 +36,20 @@ class LoginContainer extends React.Component {
             let user = this.state.dms.find(dm => dm.username === this.state.username)
             fetch(DMS_URL + `/${user.id}`)
                 .then(response => response.json())
-                .then(campaigns => {
+                .then(dm => {
                     this.setState({
                         loggedIn: true,
-                        options: campaigns
+                        options: dm.campaigns
                 });
             })
         } else if (this.state.players.some(player => player.username === this.state.username)){
             let user = this.state.players.find(player => player.username === this.state.username)
             fetch(PLAYERS_URL + `/${user.id}`)
                 .then(response => response.json())
-                .then(characters => {
+                .then(player => {
                     this.setState({
                         loggedIn: true,
-                        options: characters
+                        options: player.characters
                 });
             })
 
