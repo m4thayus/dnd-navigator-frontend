@@ -14,8 +14,8 @@ function App() {
                     DnD Navigator
                 </div>
                 <Link className="item" to="/">Home</Link>
-                <Link className="item" to="/dm/">DMView</Link>
-                <Link className="item" to="/player/">PlayerView</Link>
+                {/* <Link className="item" to="/dm/">DMView</Link> */}
+                {/* <Link className="item" to="/player/">PlayerView</Link> */}
             </nav>
   
             <Route path="/" exact render={() => <LoginContainer />} />

@@ -1,21 +1,40 @@
 import React from "react";
 import SelectionContainer from "./SelectionContainer";
 import LoginForm from "../components/LoginForm";
-import { CAMPAIGNS_URL, CHARACTERS_URL } from "../routes";
+import { PLAYERS_URL, DMS_URL } from "../routes";
 
 class LoginContainer extends React.Component {
     state = {
         loggedIn: false,
         username: "",
         userType: "player",
+        players: [],
+        dms: [],
         options: []
+    }
+
+    componentDidMount() {
+        fetch(PLAYERS_URL)
+            .then(response => response.json())
+            .then(players => {
+                this.setState({
+                    players: players 
+                })
+            });
+        fetch(DMS_URL)
+            .then(response => response.json())
+            .then(dms => {
+                this.setState({
+                    dms: dms 
+                })
+            });
     }
 
     handleSubmit = event => {
         event.preventDefault()
-        if (this.state.userType === "dm") {
-            //should be DMS_URL/:id
-            fetch(CAMPAIGNS_URL)
+        if (this.state.userType === "dm" && this.state.dms.some(dm => dm.username === this.state.username) ) {
+            let user = this.state.dms.find(dm => dm.username === this.state.username)
+            fetch(DMS_URL + `/${user.id}`)
                 .then(response => response.json())
                 .then(campaigns => {
                     this.setState({
@@ -23,9 +42,9 @@ class LoginContainer extends React.Component {
                         options: campaigns
                 });
             })
-        } else {
-            //should be PLAYERS_URL/:id
-            fetch(CHARACTERS_URL)
+        } else if (this.state.players.some(player => player.username === this.state.username)){
+            let user = this.state.players.find(player => player.username === this.state.username)
+            fetch(PLAYERS_URL + `/${user.id}`)
                 .then(response => response.json())
                 .then(characters => {
                     this.setState({
