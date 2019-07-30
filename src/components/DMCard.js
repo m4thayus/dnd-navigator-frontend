@@ -24,12 +24,17 @@ const renderQueueButton = (type, card, handleClick, handleClickAlt) => {
 }
 
 const DMCard = props => {
+    const divStyle = {
+        overflowY: "scroll",
+        height: "250px"
+    }
+
     let { card, handleClick, handleClickAlt, type } = props;
 
     return (
         !!card
         ? 
-            <div className="ui card">
+            <div className="ui card" >
                 <div className="content">
                     <img className="right floated mini ui image" src={card.img_url} alt={card.title} />
                     <div className="header">
@@ -38,7 +43,7 @@ const DMCard = props => {
                     <div className="meta">
                         {card.type}
                     </div>
-                    <div className="description">
+                    <div className="description" style={divStyle}>
                         {card.content}
                     </div>
                 </div>
