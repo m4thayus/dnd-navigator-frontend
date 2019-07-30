@@ -1,6 +1,8 @@
 import React from "react";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import DMCard from "../components/DMCard";
 import { CAMPAIGNS_URL, TURNS_URL } from "../routes";
+import NewCardContainer from "./NewCardContainer";
 
 class DMView extends React.Component {
     constructor(props) {
@@ -116,6 +118,8 @@ class DMView extends React.Component {
     render() {
         return(
             <React.Fragment>
+                <Router >
+                <Route path="/new-card/" render={() => <NewCardContainer campaign={this.props.campaign} />} />
                 <div className="ui cards two wide column container">
                     <DMCard key="this-turn" card={this.state.thisTurn} type={"this-turn"} />
                     <DMCard 
@@ -124,11 +128,17 @@ class DMView extends React.Component {
                     />
                 </div>
                 <div className="ui segment container">
+                    <div className="ui right external rail">
+                    <Link className="ui primary button" to="/new-card/">
+                            Add New Card
+                    </Link>
+                    </div>
                     <div className="ui cards centered">
                         {this.state.cards.filter(card => card !== this.state.thisTurn)
                             .map(card => <DMCard key={card.id} card={card} type={"list"} handleClick={this.handleAddToQueue}/>)}
                     </div>
                 </div>
+                </Router>
             </React.Fragment>
         )
     }
