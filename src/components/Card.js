@@ -30,7 +30,7 @@ const Card = props => {
                         {card.title}
                     </div>
                     <div className="meta">
-                        Category Placeholder
+                        {card.type}
                     </div>
                     <div className="description">
                         {card.content}
