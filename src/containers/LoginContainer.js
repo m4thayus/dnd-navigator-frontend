@@ -1,7 +1,7 @@
 import React from "react";
 import SelectionContainer from "./SelectionContainer";
 import LoginForm from "../components/LoginForm";
-import { DMS_URL, CAMPAIGNS_URL } from "../routes";
+import { CAMPAIGNS_URL, CHARACTERS_URL } from "../routes";
 
 class LoginContainer extends React.Component {
     state = {
@@ -13,14 +13,28 @@ class LoginContainer extends React.Component {
 
     handleSubmit = event => {
         event.preventDefault()
-        fetch(CAMPAIGNS_URL)
-            .then(response => response.json())
-            .then(campaigns => {
-                this.setState({
-                    loggedIn: true,
-                    options: campaigns
-            });
-        })
+        if (this.state.userType === "dm") {
+            //should be DMS_URL/:id
+            fetch(CAMPAIGNS_URL)
+                .then(response => response.json())
+                .then(campaigns => {
+                    this.setState({
+                        loggedIn: true,
+                        options: campaigns
+                });
+            })
+        } else {
+            //should be PLAYERS_URL/:id
+            fetch(CHARACTERS_URL)
+                .then(response => response.json())
+                .then(characters => {
+                    this.setState({
+                        loggedIn: true,
+                        options: characters
+                });
+            })
+
+        }
     }
 
     handleUsernameChange = event => {
