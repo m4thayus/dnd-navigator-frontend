@@ -1,5 +1,5 @@
 import React from "react";
-import Card from "../components/Card";
+import DMCard from "../components/DMCard";
 import { CARDS_URL, TURNS_URL } from "../routes";
 
 class DMView extends React.Component {
@@ -85,13 +85,13 @@ class DMView extends React.Component {
         return(
             <React.Fragment>
                 <div className="ui cards centered">
-                    <Card key="this-turn" card={this.state.thisTurn} type={"this-turn"} />
-                    <Card key="next-turn" card={this.state.nextTurn} list={"next-turn"} handleClick={this.handleConfirm} />
+                    <DMCard key="this-turn" card={this.state.thisTurn} type={"this-turn"} />
+                    <DMCard key="next-turn" card={this.state.nextTurn} list={"next-turn"} handleClick={this.handleConfirm} />
                 </div>
                 <div className="ui divider"></div>
                 <div className="ui cards centered">
                     {this.state.cards.filter(card => card !== this.state.thisTurn)
-                        .map(card => <Card key={card.id} card={card} type={"list"} handleClick={this.handleAddToQueue}/>)}
+                        .map(card => <DMCard key={card.id} card={card} type={"list"} handleClick={this.handleAddToQueue}/>)}
                 </div>
             </React.Fragment>
         )

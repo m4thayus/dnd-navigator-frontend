@@ -17,7 +17,7 @@ const renderQueueButton = (type, card, handleClick) => {
     }
 }
 
-const Card = props => {
+const DMCard = props => {
     let { card, handleClick, type } = props;
 
     return (
@@ -71,4 +71,4 @@ const Card = props => {
     );
 };
       
-export default Card;
+export default DMCard;
