@@ -103,7 +103,10 @@ class DMView extends React.Component {
         fetch(TURNS_URL, configObject)
             .then(response => response.json())
             .then(turn => {
-               //do some stuff 
+                this.setState({
+                    thisTurn: card,
+                    nextTurn: null
+                })
             })
             .catch(error => {
                 window.alert(error.message);
