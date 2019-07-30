@@ -1,47 +1,24 @@
 import React from "react";
 import NewCardForm from "../components/NewCardForm";
+import { CARDS_URL } from "../routes";
 
 class NewCardContainer extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             // campaign: props.campaign
-            cards: [],
-            campaigns: [],
-            newCard: null
+            title: "",
+            content: "",
+            img_url: ""
         }
     }
 
-    componentDidMount () {
-        fetch()
-            .then(response => response.json())
-            .then(card => {
-                this.setState({
-                    cards: campaign.cards
-                })
-
-            })
-    }
-
-    handleSubmit = card => {
-        this.setState({
-            newCard: card
-        });
-    } 
-
-    handleChange = () => {
-        this.state.campaign(campaign => {
-            this.postCard(title, content, img_url, campaign)
-        })
-
-    }
-
-    postCard = (title, content, img_url, campaign) => {
+    handleSubmit = event => {
         let cardData = {
-            title: title,
-            content: content,
-            img_url: img_url,
-            campaign_id: parseInt(campaign.id, 10)
+            title: this.state.title,
+            content: this.state.content,
+            img_url: this.state.img_url,
+            campaign_id: parseInt(this.props.campaign.id, 10)
         };
         
         let configObject = {
@@ -56,11 +33,18 @@ class NewCardContainer extends React.Component {
         fetch(CARDS_URL, configObject)
             .then(response => response.json())
             .then(card => {
-                this.setState({ cards, loading: false})
+                this.props.addCard(card)
             })
             .catch(error => {
                 window.alert(error.message);
             });
+    } 
+
+    handleChange = event => {
+        this.setState({
+            [event.target.name]: event.target.value
+        })
+
     }
 
     render() {
