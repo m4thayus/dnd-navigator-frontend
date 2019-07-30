@@ -6,7 +6,6 @@ class PlayerView extends React.Component {
 
     state = {
         cards: [],
-        loading: true,
         characters: []
     };
  
@@ -43,15 +42,14 @@ class PlayerView extends React.Component {
                     }
                 ]
                 this.setState({
-                    cards: cards,
-                    thisTurn: cards[cards.length - 1]
+                    cards: cards
                 })
             })
     }
 
     render() {
         return (
-            <div className="ui cards">
+            <div className="ui items container centered">
                 {this.state.cards.map(card => <PlayerCard card={card} key={card.id}/>)}
             </div>
         )
