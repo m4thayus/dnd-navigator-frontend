@@ -25,7 +25,7 @@ class PlayerView extends React.Component {
         return (
             <React.Fragment>
                 <div className="ui segment container centered">
-                    <button className="ui fluid primary button">
+                    <button onClick={() => this.props.incrementTurn() } className="ui fluid primary button">
                         Next Turn
                     </button>
                 </div>

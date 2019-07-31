@@ -13,7 +13,8 @@ class SelectionContainer extends React.Component {
             //or
             // player: props.user === "player",
             // characters: props.options,
-            currentSelection: null
+            currentSelection: null,
+            turn: 0
         }
     }
 
@@ -23,11 +24,17 @@ class SelectionContainer extends React.Component {
         })
     }
 
+    incrementTurn = () => {
+        this.setState({
+            turn: this.state.turn + 1
+        })
+    }
+
     render() {
         return (
             !!this.state.currentSelection
             ?
-                this.props.user === "dm" ? <DMView campaign={this.state.currentSelection} /> : <PlayerView character={this.state.currentSelection} />
+                this.props.user === "dm" ? <DMView campaign={this.state.currentSelection} /> : <PlayerView key={this.state.turn} character={this.state.currentSelection} incrementTurn={this.incrementTurn}/>
             :
             <div className="ui segment items container centered">
                     {
