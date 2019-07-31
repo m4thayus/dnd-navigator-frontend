@@ -16,7 +16,7 @@ function Character(props){
                     <span>{character.gender} + {character.race}</span>
                 </div>
                 <div className="description">
-                    <p>Probably not copyright infringing at all...</p>
+                     {character.description}
                 </div>
             </div>
         </div>
